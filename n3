@@ -1,7 +1,7 @@
 import pygame
 from pygame.draw import *
 pygame.init()
-FPS = 30
+FPS=30
 screen = pygame.display.set_mode((600,1000))
 white = [255, 255, 255]
 screen.fill(white)
@@ -13,8 +13,7 @@ def main():
         rect(screen, (0, 255, 0), (0, 450, 600, 600))
         rect(screen, (0, 255, 255), (0, 0, 600, 450))
         rect(screen, (204, 254, 254), (130, 500, 60, 120))
-        pygame.draw.ellipse(screen, (0,255,0),(72, 179, 120, 92))
-        pygame.draw.ellipse(screen, (0,153,0),(73, 180, 118, 90))
+     
         pygame.draw.ellipse(screen, (0,255,0),(112, 159, 152, 172))
         pygame.draw.ellipse(screen, (0,153,0),(113, 160, 150, 170))
         pygame.draw.ellipse(screen, (0,255,0), (-16, 239, 362, 172))
@@ -223,6 +222,8 @@ def main():
         pygame.draw.ellipse(screen, (205, 153, 253), (235, 905+20, 40, 20 ))
         pygame.draw.ellipse(screen, (185, 253, 53), (200, 910+20, 50, 25 ))
     unic3()
+
+    
     """Солнце"""
     surface1 = screen.convert_alpha()
     surface1.fill([0,0,0,0])
@@ -276,18 +277,74 @@ def main():
     pygame.draw.circle(surface1, (255, 255, 0, 245), (540, 100), 15)
     pygame.draw.circle(surface1, (255, 255, 0, 250), (540, 100), 10)
     pygame.draw.circle(surface1, (255, 255, 0, 255), (540, 100), 5)
-    
     screen.blit(surface1, (0,0))
     pygame.display.update()
-    clock = pygame.time.Clock()
-    finished = False
-    while not finished:
-        clock.tick(FPS)
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                finished = True
+def ap(x,y):
+        pygame.draw.ellipse(screen, (0,255,0), (x, y, 20, 20))
+        pygame.draw.ellipse(screen, (253,155,255),(x, y, 18, 18))
+ap(228,280)
+def bird(x,y):
+        pygame.draw.ellipse(screen, (255,255,255), (x, y, 80, 20))
+        pygame.draw.ellipse(screen, (255,255,255),(x+20, y-14, 18, 50))
+        pygame.draw.ellipse(screen, (0,0,0),(x+60, y+2, 10, 10))
+        pygame.draw.ellipse(screen, (255,255,255),(x+60, y+2, 5, 5))
+def rc(x,y):
+    rect(screen, (255, 255, 255), (x, y, 200, 60))
+    rect(screen, (0, 0, 200), (x, y+60, 200, 60))
+    rect(screen, (200, 0, 0), (x, y+120, 200, 60))
 
-    pygame.quit()
-main()
+clock=pygame.time.Clock()
+
+"""upalo"""
+for i in range (0,193):
+    x=280
+    y=300+i-1
+    main()
+    ap(x,y)    
+    pygame.display.update()
+    clock.tick(100)
+"""edet"""
+for i in range (0,193):
+    x=280+i
+    y=492
+    main()
+    ap(x,y)    
+    pygame.display.update()
+    clock.tick(100)
+"""letit"""
+for i in range (0,200):
+    x=280+i
+    y=100
+    main()
+    bird(x,y)    
+    pygame.display.update()
+    clock.tick(100)
+"""padaet"""
+for i in range (0,500):
+    x=480
+    y=100+i
+    main()
+    bird(x,y)    
+    pygame.display.update()
+    clock.tick(100)    
+"""konechnaya"""
+for i in range (0,2000):
+    x=180
+    y=1000-i
+    main()
+    rc(x,y)    
+    pygame.display.update()
+    clock.tick(100)
+
+finished = False
+while not finished:
+    clock.tick(FPS)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            finished = True
+
+pygame.quit()
 
 
+
+    
